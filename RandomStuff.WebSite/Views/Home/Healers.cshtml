@@ -1,0 +1,42 @@
+﻿@using RandomStuff.WebSite.ViewModel
+@model HealerListViewModel
+
+@{
+}
+
+<h3>Специалисты</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ФИО
+            </th>
+            <th>
+                Специальность
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var item in Model.Healers) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @item.Speciality.name
+            </td>
+            <td>
+                @Html.ActionLink("Записаться", "Checkin", new { healerId = item.Id }, new { @class="btn-primary" }) |
+                @Html.ActionLink("Приемы", "ExecutionList", new { healerId = item.Id }) |
+                @Html.ActionLink("Изменить", "EditHealer", new { id = item.Id }) |
+                @Html.ActionLink("Удалить", "DeleteHealer", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<p>
+    @Html.ActionLink("Добавить Врача", "EditHealer")        
+</p>

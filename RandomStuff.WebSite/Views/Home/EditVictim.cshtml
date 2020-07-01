@@ -1,0 +1,30 @@
+﻿@model RandomStuff.Lib.Model.Victim
+
+@{
+
+}
+
+<h4>Данные о пОциенте</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditVictim">
+            @Html.ValidationSummary()
+            <div class="form-group">
+                @Html.DisplayNameFor(m => m.FullName)
+                @Html.EditorFor(m => m.FullName)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(m => m.BirthDay)
+                @Html.EditorFor(m => m.BirthDay)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Victims">Назад к списку поциентов</a>
+</div>

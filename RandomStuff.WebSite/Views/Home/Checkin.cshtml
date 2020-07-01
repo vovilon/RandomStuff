@@ -1,0 +1,35 @@
+﻿@model RandomStuff.Lib.Model.Execution
+
+@{
+}
+
+<h2>Записаться ко врачу</h2>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Checkin">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.HiddenFor(m => m.Id)
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(x => x.HealerId)
+                @Html.DropDownListFor(x => x.HealerId, new SelectList(ViewBag.AllHealers, "Id", "FullName"))
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(x => x.VictimId)
+                @Html.DropDownListFor(x => x.VictimId, new SelectList(ViewBag.AllVictims, "Id", "FullName"))
+            </div>
+            <div class="form-group">
+                @Html.DisplayNameFor(x => x.ExecutionTime)
+                @Html.EditorFor(x => x.ExecutionTime)
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Обнулить" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Назад", (string)ViewBag.ReturnUrl, new { id = ViewBag.Id })
+</div>

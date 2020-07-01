@@ -1,0 +1,58 @@
+﻿@using RandomStuff.WebSite.ViewModel
+@model ExecutionListViewModel
+
+@{
+}
+
+<form asp-action="ExecutionList">
+    <div class="form-group">
+        <p>Прием ведет:</p>
+        @Html.DropDownListFor(x => x.HealerId, new SelectList(ViewBag.AllHealers, "Id", "FullName"))
+    </div>
+    <div class="form-group">
+        <p>Пациент:</p>
+        @Html.DropDownListFor(x => x.VictimId, new SelectList(ViewBag.AllVictims, "Id", "FullName"))
+    </div>
+    @Html.EditorFor(m => m.ChoosenDate)
+    <input type="submit" value="Выбрать" />
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Доктор
+            </th>
+            <th>
+                Поциент
+            </th>
+            <th>
+                Время
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Executions)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Healer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Victim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Time)
+                </td>
+                <td>
+                    @Html.ActionLink("Перенести", "Checkin", new { executionId = item.Id }) |
+                    @Html.ActionLink("Отменить", "AbortExecution", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+

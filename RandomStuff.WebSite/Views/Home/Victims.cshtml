@@ -1,0 +1,42 @@
+﻿@model IEnumerable<RandomStuff.Lib.Model.Victim>
+
+@{
+}
+
+<h3>Пациенты</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDay)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDay)
+                </td>
+                <td>
+                    @Html.ActionLink("Изменить", "EditVictim", new { id = item.Id }) |
+                    @Html.ActionLink("Записаться", "Checkin", new { victimId = item.Id }) |
+                    @Html.ActionLink("Визиты", "ExecutionList", new { victimId = item.Id }) |
+                    @Html.ActionLink("Удалить", "DeleteVictim", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a asp-action="EditVictim">Добавить пациента</a>
+</p>

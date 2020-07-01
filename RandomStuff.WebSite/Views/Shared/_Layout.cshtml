@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Кавайная Больничка</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="navbar-brand">Здесь должна быть реклама</div>
+        </div>
+    </header>
+    <div class="container">
+        
+        <main role="main" class="pb-3">
+            <div class="row panel">
+                <div class="col-xs-3">
+                    @Html.RouteLink("Специалисты", new { controller = "Home", action = "Healers" }, new { @class = "btn btn-block btn-primary btn-lg" })
+                    @if (true) // TODO: auth
+                    {
+                        @Html.RouteLink("Посетители", new { controller = "Home", action = "Victims" }, new { @class = "btn btn-block btn-info btn-lg" })
+                        @Html.RouteLink("Посещения", new { controller = "Home", action = "ExecutionList" }, new { @class = "btn btn-block btn-info btn-lg" })
+                    }
+                </div>
+                <div class="col-xs-8">
+                    @RenderBody()
+                </div>
+            </div>
+            
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2020 - RandomStuff
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
